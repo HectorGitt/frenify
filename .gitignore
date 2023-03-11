@@ -5,7 +5,7 @@
 __pycache__
 db.sqlite3
 media
-mint/migrations/
+frenifyBlog/migrations/
 
 # Backup files # 
 *.bak 
