@@ -5,6 +5,9 @@
 __pycache__
 db.sqlite3
 media
+uploads
+_versions
+static
 frenifyBlog/migrations/
 
 # Backup files # 
