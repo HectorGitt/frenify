@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -26,18 +27,24 @@ SECRET_KEY = 'django-insecure-+fo%xiyk#ad1ox9k*tni^+j+_qav0oa0l_0^ppsdi_zihx-!)b
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = ['https://d600-102-89-42-105.eu.ngrok.io']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'frenifyBlog',
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    'ckeditor',
+    'sorl.thumbnail',
 ]
 
 MIDDLEWARE = [
@@ -95,10 +102,56 @@ DATABASES = {
 
         'HOST': config('DB_HOST'),
         'PORT': config('DB_PORT', cast=int),
+        'OPTIONS': {
+            'charset': 'utf8mb4',
+        },
 
-    }
+    },
 
 }
+
+#JAZZMIN_SETTINGS
+
+JAZZMIN_SETTINGS = {
+    # title of the window (Will default to current_admin_site.site_title if absent or None)
+    "site_title": "Frenify Admin",
+    "site_header": "Frenify",
+    "site_brand": "Frenify",
+    "copyright": "Frenify Ltd",
+}
+
+JAZZMIN_UI_TWEAKS = {
+    "navbar_small_text": False,
+    "footer_small_text": False,
+    "body_small_text": False,
+    "brand_small_text": False,
+    "brand_colour": "navbar-white",
+    "accent": "accent-info",
+    "navbar": "navbar-white navbar-light",
+    "no_navbar_border": False,
+    "navbar_fixed": True,
+    "layout_boxed": False,
+    "footer_fixed": False,
+    "sidebar_fixed": True,
+    "sidebar": "sidebar-light-info",
+    "sidebar_nav_small_text": False,
+    "sidebar_disable_expand": False,
+    "sidebar_nav_child_indent": True,
+    "sidebar_nav_compact_style": False,
+    "sidebar_nav_legacy_style": False,
+    "sidebar_nav_flat_style": True,
+    "theme": "sketchy",
+    "actions_sticky_top": True,
+    "button_classes": {
+        "primary": "btn-primary",
+        "secondary": "btn-secondary",
+        "info": "btn-info",
+        "warning": "btn-warning",
+        "danger": "btn-danger",
+        "success": "btn-outline-success"
+    }
+}
+JAZZMIN_SETTINGS["show_ui_builder"] = True
 
 
 # Password validation
@@ -119,6 +172,31 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+CKEDITOR_CONFIGS = {
+    'awesome_ckeditor': {
+        'skin': 'moono-lisa',
+        'toolbar': 'full',
+        'height': '100%',
+        'width': '100%',
+        'toolbarCanCollapse': True,
+    },
+    'extraPlugins': ','.join([
+            'uploadimage', # the upload image feature
+            # your extra plugins here
+            'div',
+            'autolink',
+            'autoembed',
+            'embedsemantic',
+            'autogrow',
+            # 'devtools',
+            'widget',
+            'lineutils',
+            'clipboard',
+            'dialog',
+            'dialogui',
+            'elementspath'
+        ]),
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
@@ -131,11 +209,15 @@ USE_I18N = True
 
 USE_TZ = True
 
+MEDIA_ROOT=config('MEDIA_ROOT')
+MEDIA_URL=''
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+CKEDITOR_UPLOAD_PATH = "uploads/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
