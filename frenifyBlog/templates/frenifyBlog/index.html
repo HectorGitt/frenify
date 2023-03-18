@@ -1,0 +1,30 @@
+{% extends 'frenifyBlog/base.html' %}
+
+{% block content %}
+
+<section class="container bg-yellow-100">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="text-center">Blog</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="row justify-center col ">
+                {% for blog in blog_posts  %}
+                    <div class="card" style="width: 18rem;">
+                        <img src="{{blog.thumbnail}}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                        <h5 class="card-title">{{blog.twitter}}</h5>
+                        <p class="card-text">{{blog.description}}</p>
+                        <a href="{{blog.get_absolute_url}}" class="btn btn-primary">Read more</a>
+                        </div>
+                    </div>
+                    
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

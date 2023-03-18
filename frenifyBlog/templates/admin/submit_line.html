@@ -1,0 +1,15 @@
+{% extends "admin/submit_line.html" %}
+{% load i18n admin_urls %}
+<div class="submit-row">
+    
+
+
+{% block submit-row %}
+{% if custom_buttons_template %}
+<input type="submit" class='btn btn-outline-success form-control mb-3 ' value="{% if can_change %}{% translate 'Fetch Twitter Metadata' %}{% else %}{% translate 'Save and view' %}{% endif %}" name="_continue"/>
+{% endif %}
+{{ block.super }}
+
+
+
+{% endblock %}
