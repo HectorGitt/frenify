@@ -34,6 +34,7 @@ class BlogDetailView(DetailView):
         return context
 
 @login_required
+@never_cache
 def blog_like(request, slug):
     blog_post = get_object_or_404(BlogPost, slug=slug)
     twitter_user = TwitterUser.objects.filter(user=request.user).first()
