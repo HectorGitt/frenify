@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import never_cache
+from django.utils.decorators import method_decorator
 from django.shortcuts import render, redirect, get_object_or_404
 from .authorization import create_update_user_from_twitter
 from django.views.generic.list import ListView
@@ -32,6 +33,10 @@ class BlogDetailView(DetailView):
         else:
             context['is_liked'] = False
         return context
+
+    @method_decorator(never_cache)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
 
 @login_required
 @never_cache
