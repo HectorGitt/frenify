@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import BlogPost, Category
+from .models import BlogPost, Category, TwitterUser
 
 # Register your models here.
 @admin.register(BlogPost)
@@ -7,7 +7,7 @@ class BlogPostAdmin(admin.ModelAdmin):
 
 
 
-    list_display = ('title', 'pub_date_pretty', 'twitter', 'likes')
+    list_display = ('title', 'pub_date_pretty', 'twitter')
     
     def change_view(self, request, object_id, form_url='', extra_context=None):
         extra_context = extra_context or {}
@@ -25,3 +25,6 @@ class BlogPostAdmin(admin.ModelAdmin):
 class CategoryAdmin(admin.ModelAdmin):
     pass
 
+@admin.register(TwitterUser)
+class TwitterUserAdmin(admin.ModelAdmin):
+    pass
