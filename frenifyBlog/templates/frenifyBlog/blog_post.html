@@ -1,8 +1,9 @@
 {% extends 'frenifyBlog/base.html' %}
 
 {% block content %}
+{% include 'frenifyBlog/nav.html' %}
 
-<section class="container bg-yellow-100 border border-5 rounded-4 w-100 pt-5" style='border-color: black'>
+<section class="container bg-yellow-100 m-5 border border-5 rounded-4 w-100 pt-5" style='border-color: black'>
         <div class="col-md-12">
             <h1 class="text-center">Blog</h1>
         </div>
@@ -16,6 +17,20 @@
             {{blogpost.content | safe }}
         </div>
     </div>
+    <div class="col-md-12">
+        
+    </div>
+    <div class="d-grid gap-2 d-md-block">
+        <a href="{{blogpost.slug}}/like"   class="btn btn-primary ml-3">{% if is_liked%} Remove Like {%else%} Like {%endif%} </a>
+      </div>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    
+        
+    </div>
 </section>
+
+
+
+
 
 {% endblock %}
