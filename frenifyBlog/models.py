@@ -1,5 +1,4 @@
 from django.db import models
-from tinymce import models as tinymce_models
 from sorl.thumbnail import ImageField
 from django.utils.text import slugify
 from twitter_api.twitter_api import TwitterAPI
