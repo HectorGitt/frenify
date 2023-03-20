@@ -1,6 +1,9 @@
 {% extends 'frenifyBlog/base.html' %}
 
+
 {% block content %}
+{% include 'frenifyBlog/nav.html' %}
+
 
 <section class="container bg-yellow-100">
     <div class="row">
@@ -10,7 +13,7 @@
     </div>
     <div class="row">
         <div class="col-12">
-            <div class="row justify-center col ">
+            <div class="row justify-content-between row-gap-3 ">
                 {% for blog in blog_posts  %}
                     <div class="card" style="width: 18rem;">
                         <img src="{{blog.thumbnail}}" class="card-img-top" alt="...">
@@ -19,6 +22,7 @@
                         <p class="card-text">{{blog.description}}</p>
                         <a href="{{blog.get_absolute_url}}" class="btn btn-primary">Read more</a>
                         </div>
+                        <a class="btn btn-primary">{{blog.liked_by.count}}{{blog.liked_by.count|pluralize:"like, likes"}}</a>
                     </div>
                     
                 {% endfor %}
