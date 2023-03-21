@@ -11,7 +11,7 @@
             <h2 class="text-center">{{blog_post.title}}</h2>
         <div>
         <div class="col-md-12">
-            <img src="/{{blogpost.thumbnail}}" alt="{{blogpost.title}}" class="w-100 image-fluid">
+            <img src="{{blogpost.thumbnail.url}}" alt="{{blogpost.title}}" class="w-100 image-fluid">
         </div>
         <div class="col-md-12">
             {{blogpost.content | safe }}
