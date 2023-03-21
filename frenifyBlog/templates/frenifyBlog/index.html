@@ -16,7 +16,7 @@
             <div class="row justify-content-between row-gap-3 ">
                 {% for blog in blog_posts  %}
                     <div class="card" style="width: 18rem;">
-                        <img src="{{blog.thumbnail}}" class="card-img-top" alt="...">
+                        <img src="{{blog.get_thumbnail}}" class="card-img-top" alt="...">
                         <div class="card-body">
                         <h5 class="card-title">{{blog.twitter}}</h5>
                         <p class="card-text">{{blog.description}}</p>
