@@ -67,6 +67,12 @@ class BlogPost(models.Model):
     def get_likes(self):
         return self.liked_by.count() + self.default_likes
     
+    def get_thumbnail(self):
+        if 'http' in self.thumbnail.url:
+            return str(self.thumbnail)
+        else:
+            return '/' + str(self.thumbnail)
+    
     def handle_twitter(self):
         twitter_api = TwitterAPI()
         username = self.twitter.replace('@', '')
