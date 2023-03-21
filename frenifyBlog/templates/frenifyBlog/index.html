@@ -22,7 +22,7 @@
                         <p class="card-text">{{blog.description}}</p>
                         <a href="{{blog.get_absolute_url}}" class="btn btn-primary">Read more</a>
                         </div>
-                        <a class="btn btn-primary">{{blog.liked_by.count}}{{blog.liked_by.count|pluralize:"like, likes"}}</a>
+                        <a class="btn btn-primary">{{blog.get_likes}}{{blog.get_likes|pluralize:"like, likes"}}</a>
                     </div>
                     
                 {% endfor %}
