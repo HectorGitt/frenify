@@ -50,7 +50,7 @@ class BlogPost(models.Model):
     thumbnail = ImageField(upload_to='media/uploads/', blank=True, null=True)
     description = models.TextField(blank=True, help_text='Leave blank to populate from twitter profile')
     content = RichTextUploadingField(config_name='awesome_ckeditor', blank=True, null=True)
-    default_likes = models.IntegerField(default=0, editable=False)
+    default_likes = models.IntegerField(default=0)
     date = models.DateTimeField(auto_now_add=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, default=Category.get_default_pk, help_text='Verify this is the same as the category name in the blog post')
     liked_by = models.ManyToManyField(TwitterUser, related_name='liked_by', blank=True)
@@ -63,6 +63,9 @@ class BlogPost(models.Model):
     
     def get_absolute_url(self):
         return f"/blog/{self.slug}"
+    
+    def get_likes(self):
+        return self.liked_by.count() + self.default_likes
     
     def handle_twitter(self):
         twitter_api = TwitterAPI()
