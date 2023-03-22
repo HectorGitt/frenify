@@ -16,7 +16,6 @@ from .models import BlogPost, TwitterUser, TwitterAuthToken
 # Create your views here.
 
 
-@never_cache
 def home(request):
     blog_posts = BlogPost.objects.all()
     return render(request, 'frenifyBlog/index.html', {'blog_posts': blog_posts})
