@@ -29,8 +29,22 @@
     </div>
 </section>
 
+{% include 'frenifyBlog/follow_modal.html' %}
 
 
 
+
+
+{% endblock %}
+
+{% block script %}
+<script>
+    const modal = document.querySelector('.modal');
+    const modalBtn = document.querySelector('[data-bs-toggle=modal]');
+    {% if messages %}
+        modalBtn.click();
+    {% endif %}
+
+</script>
 
 {% endblock %}
