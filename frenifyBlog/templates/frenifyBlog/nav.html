@@ -11,7 +11,7 @@
             {% if user.is_authenticated %}
               <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
             {% else %}
-                <a class='nav-link' href="{% url 'login' %}">Login</a>
+              <a href='{% url 'twitter_login' %}' class="nav-link" >Login to Twitter</a>
             {% endif %}
           </li>
           {% comment %} <li class="nav-item">
