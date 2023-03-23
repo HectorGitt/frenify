@@ -1,0 +1,22 @@
+<!-- Button trigger modal -->
+<button type="button" class="d-none btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    Launch demo modal
+  </button>
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Follow User?</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            {% spaceless %}
+            <p class='mx-1'>
+                Follow {% for screen_name in messages %}<a href="https://twitter.com/intent/follow?screen_name={{screen_name}}" onclick='window.open(this.href,"targetWindow","menubar=1,resizable=yes,width=600,height=550"); return false;' data-show-count='false' data-show-screen-name='false' class='fw-bold'>{{screen_name}}</a>, {% endfor %}</p>
+            {% endspaceless %}
+        </div>
+      </div>
+    </div>
+</div>
+
