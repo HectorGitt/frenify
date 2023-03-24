@@ -67,6 +67,9 @@ class BlogPost(models.Model):
     def get_likes(self):
         return self.liked_by.count() + self.default_likes
     
+    def is_liked(self, user):
+        return self.liked_by.filter(user=user).exists()
+    
     def get_thumbnail(self):
         if 'http' in self.thumbnail.url:
             return str(self.thumbnail)
