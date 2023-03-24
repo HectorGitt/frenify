@@ -3,6 +3,7 @@
 
 {% block content %}
 {% include 'frenifyBlog/nav.html' %}
+{% load like_tags %}
 
 
 <section class="container bg-yellow-100">
@@ -20,9 +21,17 @@
                         <div class="card-body">
                         <h5 class="card-title">{{blog.twitter}}</h5>
                         <p class="card-text">{{blog.description}}</p>
+                        <p class="card-text">{{blog.get_likes}}{{blog.get_likes|pluralize:"like, likes"}}</p>
                         <a href="{{blog.get_absolute_url}}" class="btn btn-primary">Read more</a>
                         </div>
-                        <a href='{{blog.get_absolute_url}}/like' class="btn btn-primary">{{blog.get_likes}}{{blog.get_likes|pluralize:"like, likes"}}</a>
+                        {% is_liked blog as like_state %}
+                        {% if like_state %}
+                            <a href='{{blog.get_absolute_url}}/like' class="btn btn-primary">Unlike</a>
+                        {% else %}
+                            <a href='{{blog.get_absolute_url}}/like' class="btn btn-primary">Like</a>
+                        {% endif %}
+
+                        
                     </div>
                     
                 {% endfor %}
