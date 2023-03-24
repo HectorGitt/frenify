@@ -46,7 +46,8 @@ def blog_like(request, slug):
         blog_post.liked_by.remove(twitter_user)
     else:
         blog_post.liked_by.add(twitter_user)
-        messages.add_message(request, messages.SUCCESS, str(blog_post.twitter.replace('@', '')))
+        if blog_post.twitter is not None:
+            messages.add_message(request, messages.SUCCESS, str(blog_post.twitter.replace('@', '')))
     blog_post.save()
     return redirect(request.META.get('HTTP_REFERER', 'home'))
 
