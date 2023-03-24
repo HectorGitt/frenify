@@ -42,7 +42,7 @@ class BlogDetailView(DetailView):
 def blog_like(request, slug):
     blog_post = get_object_or_404(BlogPost, slug=slug)
     twitter_user = TwitterUser.objects.filter(user=request.user).first()
-    if blog_post.liked_by.filter().first():
+    if blog_post.liked_by.filter(user=request.user).exists():
         blog_post.liked_by.remove(twitter_user)
     else:
         blog_post.liked_by.add(twitter_user)
