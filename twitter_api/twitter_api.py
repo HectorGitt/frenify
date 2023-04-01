@@ -15,6 +15,7 @@ class TwitterAPI:
         self.oauth_callback_url = config('TWITTER_OAUTH_CALLBACK_URL')
         self.access_token = config('TWITTER_ACCESS_TOKEN')
         self.access_token_secret = config('TWITTER_ACCESS_TOKEN_SECRET')
+        self.bearer_token = config('TWITTER_BEARER_TOKEN')
 
         
     def twitter_login(self):        
@@ -83,7 +84,7 @@ class TwitterAPI:
             _str_: _url_
         """
         try:
-            client = tweepy.Client(consumer_key=self.api_key, consumer_secret=self.api_secret, access_token=self.access_token, access_token_secret=self.access_token_secret)
+            client = tweepy.Client(consumer_key=self.api_key, consumer_secret=self.api_secret, access_token=self.access_token, access_token_secret=self.access_token_secret, bearer_token=self.bearer_token)
             info = client.get_user(username=twitter_handle, user_auth=True, expansions='pinned_tweet_id')
             user = client.get_user(id = info.data.id,user_auth=True, user_fields=['profile_image_url', 'description'])
             return user.data.profile_image_url, user.data.description, user.data.name
